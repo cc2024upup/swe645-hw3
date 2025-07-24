@@ -72,7 +72,7 @@ export default {
   methods: {
     async fetchSurveys() {
       try {
-        const response = await axios.get('http://localhost:8081/api/surveys')
+        const response = await axios.get('http://54.235.178.80:30623/api/surveys')
         this.surveys = response.data
       } catch (error) {
         console.error('Error fetching surveys:', error)
@@ -80,7 +80,7 @@ export default {
     },
     async updateSurvey(survey) {
       try {
-        await axios.put(`http://localhost:8081/api/surveys/${survey.id}`, survey)
+        await axios.put(`http://54.235.178.80:30623/api/surveys/${survey.id}`, survey)
         alert('Survey updated successfully')
       } catch (error) {
         console.error('Update error:', error)
