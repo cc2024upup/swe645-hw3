@@ -2,22 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: survey-frontend
-  namespace: default
-  labels:
-    app: survey-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: survey-frontend
+      app: vue-survey-app
   template:
     metadata:
       labels:
-        app: survey-frontend
+        app: vue-survey-app
     spec:
       containers:
-        - name: survey-frontend
-          image: chaochen46/vue-frontend:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 80
+      - name: vue-frontend
+        image: chaochen46/survey-frontend:proxy
+        ports:
+        - containerPort: 80
