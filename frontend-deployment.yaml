@@ -1,157 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: '1'
-    field.cattle.io/publicEndpoints: >-
-      [{"addresses":["172.31.92.176"],"port":30623,"protocol":"TCP","serviceName":"default:survey-frontend-service","allNodes":true}]
-    objectset.rio.cattle.io/applied: >-
-      H4sIAAAAAAAA/4yQP4/UMBDFv8vUyW7+Ob64pqSgokFXTCYTYnBsy5476bTyd0dmxYpihSit5/fT780NMNqvnLINHgxgjPn63kMDP63fwMAnji58nOwFGjhZcENBMDdA74Og2OBzfYb1B5Nklkuy4UIo4vhiw9VWSE9Lt4+kW14VtZNeqcXlRbWKhmVhrWeFE5QGHK7s/ok7MB9gQKmB9LgPiNM4jmtHA6Geu4XGaSPUTHpWqseuQj2eDAbyW3rnj3ZPwQv7De5Bjkg13XjHNyf1f45MVSFxdJYwg+kbyOyYJKQanCh0fH6oYoxP8KU0IHxGh8K/S3+dzv1H948FBS9oPacM5tsN7Infqy8dGOhgP83X58OeLo4hyZ3zwH4JScC8dOW1vJZSyq8AAAD//wWXJaoQAgAA
-    objectset.rio.cattle.io/id: 1c90f3c7-eb5c-47bc-a985-5c299e7765a4
-  creationTimestamp: '2025-07-22T20:50:08Z'
-  generation: 2
-  labels:
-    objectset.rio.cattle.io/hash: 552c73f2aa4333b0c2ca7609c34dca7ec76551a0
-  managedFields:
-    - apiVersion: apps/v1
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:metadata:
-          f:annotations:
-            .: {}
-            f:field.cattle.io/publicEndpoints: {}
-            f:objectset.rio.cattle.io/applied: {}
-            f:objectset.rio.cattle.io/id: {}
-          f:labels:
-            .: {}
-            f:objectset.rio.cattle.io/hash: {}
-        f:spec:
-          f:progressDeadlineSeconds: {}
-          f:replicas: {}
-          f:revisionHistoryLimit: {}
-          f:selector: {}
-          f:strategy:
-            f:rollingUpdate:
-              .: {}
-              f:maxSurge: {}
-              f:maxUnavailable: {}
-            f:type: {}
-          f:template:
-            f:metadata:
-              f:labels:
-                .: {}
-                f:app: {}
-            f:spec:
-              f:containers:
-                k:{"name":"survey-frontend"}:
-                  .: {}
-                  f:image: {}
-                  f:imagePullPolicy: {}
-                  f:name: {}
-                  f:ports:
-                    .: {}
-                    k:{"containerPort":80,"protocol":"TCP"}:
-                      .: {}
-                      f:containerPort: {}
-                      f:protocol: {}
-                  f:resources: {}
-                  f:terminationMessagePath: {}
-                  f:terminationMessagePolicy: {}
-              f:dnsPolicy: {}
-              f:restartPolicy: {}
-              f:schedulerName: {}
-              f:securityContext: {}
-              f:terminationGracePeriodSeconds: {}
-      manager: agent
-      operation: Update
-      time: '2025-07-22T20:50:08Z'
-    - apiVersion: apps/v1
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:metadata:
-          f:annotations:
-            f:deployment.kubernetes.io/revision: {}
-        f:status:
-          f:availableReplicas: {}
-          f:conditions:
-            .: {}
-            k:{"type":"Available"}:
-              .: {}
-              f:lastTransitionTime: {}
-              f:lastUpdateTime: {}
-              f:message: {}
-              f:reason: {}
-              f:status: {}
-              f:type: {}
-            k:{"type":"Progressing"}:
-              .: {}
-              f:lastTransitionTime: {}
-              f:lastUpdateTime: {}
-              f:message: {}
-              f:reason: {}
-              f:status: {}
-              f:type: {}
-          f:observedGeneration: {}
-          f:readyReplicas: {}
-          f:replicas: {}
-          f:updatedReplicas: {}
-      manager: kube-controller-manager
-      operation: Update
-      subresource: status
-      time: '2025-07-22T20:50:11Z'
   name: survey-frontend
   namespace: default
-  resourceVersion: '263021'
-  uid: 30322f33-cc50-42a3-a9d3-2603f754f903
+  labels:
+    app: survey-frontend
 spec:
-  progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: survey-frontend
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: survey-frontend
     spec:
       containers:
-        - image: chaochen46/survey-frontend
+        - name: survey-frontend
+          image: chaochen46/vue-frontend:latest
           imagePullPolicy: Always
-          name: survey-frontend
           ports:
             - containerPort: 80
-              protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status:
-  availableReplicas: 1
-  conditions:
-    - lastTransitionTime: '2025-07-22T20:50:11Z'
-      lastUpdateTime: '2025-07-22T20:50:11Z'
-      message: Deployment has minimum availability.
-      reason: MinimumReplicasAvailable
-      status: 'True'
-      type: Available
-    - lastTransitionTime: '2025-07-22T20:50:08Z'
-      lastUpdateTime: '2025-07-22T20:50:11Z'
-      message: ReplicaSet "survey-frontend-7fb567c54f" has successfully progressed.
-      reason: NewReplicaSetAvailable
-      status: 'True'
-      type: Progressing
-  observedGeneration: 2
-  readyReplicas: 1
-  replicas: 1
-  updatedReplicas: 1
