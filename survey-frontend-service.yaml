@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: >-
+      [{"addresses":["172.31.92.176"],"port":30623,"protocol":"TCP","serviceName":"default:survey-frontend-service","allNodes":true}]
+    objectset.rio.cattle.io/applied: >-
+      H4sIAAAAAAAA/3yQQWv7MAzFv4vOSf9pEteNr//7KGzsMnZQFGX1llrGVgul5LsPd2OXwW4SvPd7T7oBRv/MKXsJ4OCyhQo+fJjAwSOniyeGCk6sOKEiuBtgCKKoXkIuq4zvTJpZN8nLhlB14Y2Xf74QtjQ0c0e25tFQ3duRahz2pjbUDgNbuzPYw1rBgiMvf+KOmI/gwJiWbDe3iH3XdWNDLaHdNQN1/URomezOmC02BRrwxOAgn9OFr/WcJCiHqc4/VxVBjkhFNfGM50WLL0emUiVK0gzu5WsCt28qiElUSBZw8PT/ABUopjfWw7dgfa0g88Kkku6/ivF3g5Kh11hSH2Tiu3ddPwMAAP//GsTOCYgBAAA
+    objectset.rio.cattle.io/id: 1c90f3c7-eb5c-47bc-a985-5c299e7765a4
+  creationTimestamp: '2025-07-22T20:50:08Z'
+  labels:
+    objectset.rio.cattle.io/hash: 552c73f2aa4333b0c2ca7609c34dca7ec76551a0
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:field.cattle.io/publicEndpoints: {}
+            f:objectset.rio.cattle.io/applied: {}
+            f:objectset.rio.cattle.io/id: {}
+          f:labels:
+            .: {}
+            f:objectset.rio.cattle.io/hash: {}
+        f:spec:
+          f:externalTrafficPolicy: {}
+          f:internalTrafficPolicy: {}
+          f:ports:
+            .: {}
+            k:{"port":80,"protocol":"TCP"}:
+              .: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector: {}
+          f:sessionAffinity: {}
+          f:type: {}
+      manager: agent
+      operation: Update
+      time: '2025-07-22T20:50:08Z'
+  name: survey-frontend-service
+  namespace: default
+  resourceVersion: '262989'
+  uid: 02f76e2e-886b-4c6d-bedf-c9820dfeaff2
+spec:
+  clusterIP: 10.43.168.5
+  clusterIPs:
+    - 10.43.168.5
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - nodePort: 30623
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: survey-frontend
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

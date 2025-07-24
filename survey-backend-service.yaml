@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    objectset.rio.cattle.io/applied: >-
+      H4sIAAAAAAAA/3yQQWvDMAyF/4vOSZfESer62tNuhY1dxg6yraxeXdvYaqGU/PfhDXoZ7Cahp+896Q6Y3Bvl4mIABdceGji5YEHBC+WrMwQNnInRIiOoO2AIkZFdDKW2UX+R4UK8yS5uDDJ72rj45CphHgfRDyRaM2hsx6kfW5xwaQcrBiE6scyaYG3Aoyb/L+6I5QgKtrgbyc6m01b0Yit0R920HScpzaznRQ4dycXu+goNeCZQUC75SrdWozlRsG15HFXnJaGpIksLXjzXtZLI1CQpZi6g3n8rULKTfQMpR44melDwuj9AA4z5k/jwkKwfDRTyZDjmn3el9CdEteFbqsZ7fylM+fkA6/odAAD//66RmF+LAQAA
+    objectset.rio.cattle.io/id: 642312e3-c2ba-4514-a5af-2d323303f6be
+  creationTimestamp: '2025-07-22T20:47:27Z'
+  labels:
+    objectset.rio.cattle.io/hash: 7a94ed6c0bd31373b0e0574588c6b6f820e8fd91
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:objectset.rio.cattle.io/applied: {}
+            f:objectset.rio.cattle.io/id: {}
+          f:labels:
+            .: {}
+            f:objectset.rio.cattle.io/hash: {}
+        f:spec:
+          f:internalTrafficPolicy: {}
+          f:ports:
+            .: {}
+            k:{"port":8081,"protocol":"TCP"}:
+              .: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector: {}
+          f:sessionAffinity: {}
+          f:type: {}
+      manager: agent
+      operation: Update
+      time: '2025-07-22T20:47:27Z'
+  name: survey-backend-service
+  namespace: default
+  resourceVersion: '262186'
+  uid: 4464627a-9ac2-42f1-a9c5-e1cee030d787
+spec:
+  clusterIP: 10.43.152.182
+  clusterIPs:
+    - 10.43.152.182
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: 8081
+  selector:
+    app: survey-backend
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
