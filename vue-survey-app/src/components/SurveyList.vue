@@ -35,7 +35,7 @@
           <td><input type="date" v-model="survey.date" class="form-control"></td>
           <td>
             <ul>
-              <li v-for="like in survey.liked" :key="like">{{ like }}</li>
+              <li v-for="like in survey.likes" :key="like">{{ like }}</li>
             </ul>
           </td>
           <td>{{ survey.source }}</td>
