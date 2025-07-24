@@ -26,7 +26,7 @@
           <td>
             <input v-model="survey.username" class="form-control mb-1" placeholder="Full Name">
           </td>
-          <td>{{ survey.streetAddress }}</td>
+          <td><input v-model="survey.street" class="form-control"></td>
           <td><input v-model="survey.city" class="form-control"></td>
           <td><input v-model="survey.state" class="form-control"></td>
           <td><input v-model="survey.zip" class="form-control"></td>
@@ -35,7 +35,7 @@
           <td><input type="date" v-model="survey.date" class="form-control"></td>
           <td>
             <ul>
-              <li v-for="like in survey.likedMost" :key="like">{{ like }}</li>
+              <li v-for="like in survey.liked" :key="like">{{ like }}</li>
             </ul>
           </td>
           <td>{{ survey.source }}</td>
@@ -90,7 +90,7 @@ export default {
     async deleteSurvey(id) {
       if (!confirm('Are you sure you want to delete this survey?')) return
       try {
-        await axios.delete(`http://localhost:8081/api/surveys/${id}`)
+        await axios.delete(`http://54.235.178.80:30623/api/surveys/${id}`)
         this.surveys = this.surveys.filter(s => s.id !== id)
       } catch (error) {
         console.error('Delete error:', error)
