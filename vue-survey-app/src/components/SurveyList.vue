@@ -72,7 +72,7 @@ export default {
   methods: {
     async fetchSurveys() {
       try {
-        const response = await axios.get('http://54.235.178.80:30623/api/surveys')
+        const response = await axios.get('/api/surveys')
         this.surveys = response.data
       } catch (error) {
         console.error('Error fetching surveys:', error)
@@ -80,7 +80,7 @@ export default {
     },
     async updateSurvey(survey) {
       try {
-        await axios.put(`http://54.235.178.80:30623/api/surveys/${survey.id}`, survey)
+        await axios.put(`/api/surveys/${survey.id}`, survey)
         alert('Survey updated successfully')
       } catch (error) {
         console.error('Update error:', error)
@@ -90,7 +90,7 @@ export default {
     async deleteSurvey(id) {
       if (!confirm('Are you sure you want to delete this survey?')) return
       try {
-        await axios.delete(`http://54.235.178.80:30623/api/surveys/${id}`)
+        await axios.delete(`/api/surveys/${id}`)
         this.surveys = this.surveys.filter(s => s.id !== id)
       } catch (error) {
         console.error('Delete error:', error)
