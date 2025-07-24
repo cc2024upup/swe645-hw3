@@ -40,8 +40,8 @@ pipeline {
 
         stage('Restart Deployments') {
             steps {
-                sh 'kubectl rollout restart deployment vue-deployment'
-                sh 'kubectl rollout restart deployment spring-deployment'
+                sh 'kubectl rollout restart deployment survey-frontend'
+                sh 'kubectl rollout restart deployment survey-backend'
             }
         }
     }
