@@ -160,7 +160,7 @@ export default {
         this.setCookie('username', this.form.username);
 
         // sent data to spring boot
-        fetch('http://survey-backend-service:8081/api/surveys', {
+        fetch('http://54.235.178.80:30623/api/surveys', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
