@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: vue-frontend
-        image: chaochen46/survey-frontend:proxy
+        image: chaochen46/survey-frontend:proxy2
         imagePullPolicy: Always
         ports:
         - containerPort: 80
