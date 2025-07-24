@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vue-survey-app
+      app: survey-fronted
   template:
     metadata:
       labels:
-        app: vue-survey-app
+        app: survey-fronted
     spec:
       containers:
       - name: vue-frontend
