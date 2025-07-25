@@ -33,6 +33,7 @@ pipeline {
         sh 'kubectl apply -f frontend-deployment.yaml'
         sh 'kubectl apply -f survey-backend-service.yaml'
         sh 'kubectl apply -f survey-frontend-service.yaml'
+        sh 'kubectl rollout restart deployment survey-frontend'
       }
     }
   }
