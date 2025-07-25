@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Build Backend') {
       steps {
-        dir('springboot') {
-          sh 'mvn clean package -DskipTests'
+        dir('survey') {
+          sh '。/mvnw clean package -DskipTests'
           withCredentials([usernamePassword(credentialsId: 'cc2024upup', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
           }
@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Build Frontend') {
       steps {
-        dir('vue-frontend') {
+        dir('vue-survey-app') {
           sh 'npm install'
           sh 'npm run build'
           withCredentials([usernamePassword(credentialsId: 'cc2024upup', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
@@ -30,6 +30,8 @@ pipeline {
       steps {
         sh 'kubectl apply -f k8s/backend-deployment.yaml'
         sh 'kubectl apply -f k8s/frontend-deployment.yaml'
+        sh 'kubectl apply -f survey-backend-service.yaml'
+        sh 'kubectl apply -f survey-frontend-service.yaml'
       }
     }
   }
