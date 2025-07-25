@@ -6,7 +6,7 @@
         <div class="container my-3">
             <div v-if="form.username" id="greeting" class="alert alert-info" role="alert">
             Welcome back, {{ form.username }}!
-            <a href="#" @click.prevent="resetForm">If you are not this people, please reset your name.</a>
+            <a href="#" @click.prevent="resetForm">If you are not this user, please reset your name.</a>
             </div>
         </div>
 
