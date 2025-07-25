@@ -4,7 +4,7 @@ pipeline {
     stage('Build Backend') {
       steps {
         dir('survey') {
-          sh '。/mvnw clean package -DskipTests'
+          sh './mvnw clean package -DskipTests'
           withCredentials([usernamePassword(credentialsId: 'cc2024upup', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
           }
