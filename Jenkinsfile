@@ -1,5 +1,10 @@
 pipeline {
   agent any
+
+  environment {
+    COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+  }
+
   stages {
     stage('Build Backend') {
       steps {
@@ -9,11 +14,12 @@ pipeline {
           withCredentials([usernamePassword(credentialsId: 'cc2024upup', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
           }
-          sh 'docker build -t chaochen46/survey-backend .'
-          sh 'docker push chaochen46/survey-backend'
+          sh "docker build -t chaochen46/survey-backend:${COMMIT_HASH} ."
+          sh "docker push chaochen46/survey-backend:${COMMIT_HASH}"
         }
       }
     }
+
     stage('Build Frontend') {
       steps {
         dir('vue-survey-app') {
@@ -22,18 +28,16 @@ pipeline {
           withCredentials([usernamePassword(credentialsId: 'cc2024upup', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
           }
-          sh 'docker build -t chaochen46/survey-frontend .'
-          sh 'docker push chaochen46/survey-frontend'
+          sh "docker build -t chaochen46/survey-frontend:${COMMIT_HASH} ."
+          sh "docker push chaochen46/survey-frontend:${COMMIT_HASH}"
         }
       }
     }
+
     stage('Deploy to Kubernetes') {
       steps {
-        sh 'kubectl apply -f backend-deployment.yaml'
-        sh 'kubectl apply -f frontend-deployment.yaml'
-        sh 'kubectl apply -f survey-backend-service.yaml'
-        sh 'kubectl apply -f survey-frontend-service.yaml'
-        sh 'kubectl rollout restart deployment survey-frontend'
+        sh "kubectl set image deployment/survey-backend survey-backend=chaochen46/survey-backend:${COMMIT_HASH}"
+        sh "kubectl set image deployment/survey-frontend vue-frontend=chaochen46/survey-frontend:${COMMIT_HASH}"
       }
     }
   }
